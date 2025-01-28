@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Apply Filters</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field class="w-full mb-4">
+      <mat-label>Item Name</mat-label>
+      <input matInput placeholder="Search by name" [(ngModel)]="filter.name" name="name" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-4">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="filter.category" name="category">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-4">
+      <mat-label>Min Price</mat-label>
+      <input matInput type="number" [(ngModel)]="filter.minPrice" name="minPrice" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Max Price</mat-label>
+      <input matInput type="number" [(ngModel)]="filter.maxPrice" name="maxPrice" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close class="red-button mr-2">Cancel</button>
+  <button mat-raised-button (click)="applyFilters()" class="green-button">Apply</button>
+</mat-dialog-actions>

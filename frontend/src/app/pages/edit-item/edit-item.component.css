@@ -1,0 +1,9 @@
+.green-button:hover {
+    background-color: #388e3c;
+    color: #fff;
+  }
+  
+.red-button:hover {
+    background-color: #ff0000; 
+    color: #fff;
+}

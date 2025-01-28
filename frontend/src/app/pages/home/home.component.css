@@ -1,0 +1,25 @@
+/* .green-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .red-button {
+    background-color: #ff0000;
+    color: white;
+  } */
+  
+  
+  .green-button:hover {
+    background-color: #388e3c;
+    color: #fff;
+  }
+  
+  .red-button:hover {
+    background-color: #ff0000; 
+    color: #fff;
+  }
+    
+
+  .add-button{
+    background-color: black;
+  }

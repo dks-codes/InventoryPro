@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="flex justify-center mt-20">
+    <form [formGroup]="itemForm" class="shadow border bg-white p-8" style="width: 900px">
+        <h1 class="text-xl font-semibold mb-4">EDIT PRODUCT</h1>
+        <div class="flex flex-wrap">
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Item Name</mat-label>
+                    <input type="text" matInput formControlName="name" />
+                </mat-form-field>
+            </div>
+
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Price</mat-label>
+                    <input type="number" matInput formControlName="price"/>
+                </mat-form-field>
+            </div>
+
+            <!-- Category -->
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Category</mat-label>
+                    <mat-select placeholder="Select Category" formControlName="category">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{ category }}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Quantity -->
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Quantity</mat-label>
+                    <input type="number" matInput formControlName="quantity">
+                </mat-form-field>
+            </div>
+
+            <!-- Button -->
+             <div class="w-full flex justify-center">
+                <button mat-raised-button (click)="updateProduct()" class="mr-2 green-button">Edit</button>
+                <button mat-raised-button routerLink="/" class="red-button">Cancel</button>
+             </div>
+
+
+        </div>
+    </form>
+</div>

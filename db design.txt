@@ -1,0 +1,11 @@
+InventoryPro
+Fields:
+    Product ID (Auto-generated, Numeric)
+    Name (String)
+    Category (Dropdown: Electronics, Furniture, Groceries, etc.)
+    Quantity (Numeric)
+    Price (Numeric)
+Search Criteria:
+    By Category
+    By Name
+    By Price Range

@@ -1,0 +1,51 @@
+<div class="flex justify-center">
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="p-8">
+        <h1 class="text-center text-lg pb-2 underline">ADD ITEM</h1>
+        <div class="flex flex-wrap">
+
+            <!-- Name -->
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Item name</mat-label>
+                    <input type="text" matInput formControlName="name">
+                </mat-form-field>
+            </div>
+
+            <!-- Price -->
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Price</mat-label>
+                    <input type="number" matInput formControlName="price">
+                </mat-form-field>
+            </div>
+
+
+            <!-- Category -->
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category" placeholder="Select Category">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{ category }}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+              
+
+            <!-- Quantity -->
+            <div class="w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Quantity</mat-label>
+                    <input type="number" matInput formControlName="quantity">
+                </mat-form-field>
+            </div>
+
+            <!-- Buttons -->
+            <div class="w-full flex justify-center">
+                <button mat-raised-button (click)="onCancel()" class="red-button mr-2">Cancel</button>
+                <button mat-raised-button [disabled]="itemForm.invalid" class="green-button">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
