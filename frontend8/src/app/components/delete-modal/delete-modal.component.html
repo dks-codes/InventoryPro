@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Confirm Deletion</h1>
+<mat-dialog-content>
+  <p>Are you sure you want to delete this item?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions class="action-buttons">
+  <button mat-raised-button (click)="onCancel()" class="warn-button">Cancel</button>
+  <button mat-raised-button (click)="onConfirm()" class="red-button">Delete</button>
+</mat-dialog-actions>

@@ -1,0 +1,55 @@
+.edit-item-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(230, 248, 242);
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #333;
+    font-family: sans-serif;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    min-width: 100px;
+  }
+
+  .green-edit-button{
+    background-color:  #35c53a;
+    color: #fff;
+  }
+
+  .green-edit-button:hover{
+    background-color:  #0f9214;
+    color: #fff;
+  }
+
+  .red-edit-button{
+    background-color: #F44336;
+    color: #fff;
+  }
+
+  .red-edit-button:hover{
+    background-color: #901010;
+    color: #fff;
+  }
+
+  
+  
+  

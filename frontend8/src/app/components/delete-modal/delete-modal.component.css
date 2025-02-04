@@ -1,0 +1,34 @@
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+p {
+    font-size: large;
+    padding-bottom: 15px;
+} 
+
+.action-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.warn-button{
+    color: #ffcc00;
+    background-color: white;
+}
+
+.warn-button:hover{
+    color: white;
+    background-color: #ffcc00 ;
+}
+
+.red-button{
+    color: red;
+    background-color: white;
+}
+
+.red-button:hover{
+    color: white;
+    background-color: red;
+}

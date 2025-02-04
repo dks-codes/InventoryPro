@@ -1,0 +1,46 @@
+<div class="login-container">
+  <mat-card>
+    <mat-tab-group (selectedTabChange) = "resetErrorMsg()">
+      <!-- Login Tab -->
+      <mat-tab label="Login">
+        <form [formGroup]="loginForm" (ngSubmit)="Onlogin()">
+          <mat-form-field>
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+              Please enter a valid email address.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+          </mat-form-field>
+          <button mat-raised-button class="btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+        </form>
+        <!-- <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div> -->
+      </mat-tab>
+
+      <!-- Signup Tab -->
+      <mat-tab label="Signup">
+        <form [formGroup]="signupForm" (ngSubmit)="Onsignup()">
+          <mat-form-field>
+            <input matInput placeholder="Username"formControlName="username" name="username" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched">
+              Please enter a valid email address.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+          </mat-form-field>
+          <button mat-raised-button class="btn-primary" type="submit" [disabled]="signupForm.invalid">Signup</button>
+        </form>
+        <!-- <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div> -->
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

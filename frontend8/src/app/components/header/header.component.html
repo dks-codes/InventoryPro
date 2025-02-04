@@ -1,0 +1,10 @@
+<mat-toolbar class="navbar">
+    <span class="brand">InventoryPro</span>
+    <span class="spacer"></span>
+    <div *ngIf="isLoggedIn">
+        <span>{{username}}</span>
+        <button mat-button (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>

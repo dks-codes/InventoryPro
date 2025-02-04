@@ -13,6 +13,7 @@ import { InventoryService } from '../../services/inventory.service';
 @Component({
   selector: 'app-add-item-modal',
   imports: [MatDialogModule, MatButtonModule, MatFormField, MatLabel, ReactiveFormsModule, MatOption, MatInputModule,CommonModule, MatSelect],
+  standalone: true,
   templateUrl: './add-item-modal.component.html',
   styleUrl: './add-item-modal.component.css'
 })

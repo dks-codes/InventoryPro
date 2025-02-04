@@ -1,0 +1,29 @@
+/* General form field styling */
+.form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  /* Button Styling */
+  .cancel-button {
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-right: 8px;
+  }
+  
+  .apply-button {
+    background-color: #4caf50; /* Green */
+    color: white;
+  }
+  
+  /* Mat-dialog-actions button layout */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Form field margin adjustments */
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+  

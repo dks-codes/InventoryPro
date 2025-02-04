@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-filter-modal',
   imports: [MatFormField, MatInputModule, MatSelectModule, MatDialogModule, MatSelectModule, FormsModule, CommonModule, MatButtonModule],
+  standalone: true,
   templateUrl: './filter-modal.component.html',
   styleUrl: './filter-modal.component.css'
 })

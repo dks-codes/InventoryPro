@@ -1,0 +1,51 @@
+<div class="form-container">
+    <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+        <h1>ADD ITEM</h1>
+        <div class="form-field">
+
+            <!-- Name -->
+            <div class="full-width">
+                <mat-form-field class="full-width">
+                    <mat-label>Item name</mat-label>
+                    <input type="text" matInput formControlName="name">
+                </mat-form-field>
+            </div>
+
+            <!-- Price -->
+            <div class="full-width">
+                <mat-form-field class="full-width">
+                    <mat-label>Price</mat-label>
+                    <input type="number" matInput formControlName="price">
+                </mat-form-field>
+            </div>
+
+
+            <!-- Category -->
+            <div class="full-width">
+                <mat-form-field class="full-width">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category" placeholder="Select Category">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{ category }}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+
+            <!-- Quantity -->
+            <div class="full-width">
+                <mat-form-field class="full-width">
+                    <mat-label>Quantity</mat-label>
+                    <input type="number" matInput formControlName="quantity">
+                </mat-form-field>
+            </div>
+
+            <!-- Buttons -->
+            <div class="action-buttons">
+                <button mat-raised-button (click)="onCancel()" class="red-button">Cancel</button>
+                <button mat-raised-button [disabled]="addItemForm.invalid" class="green-add-button">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class InventoryService {
   httpClient = inject(HttpClient);
 
-  private API_url = environment.apiUrl;
+  private API_url = "http://localhost:3939/api/inventory";
   getItemsFromApi(){
     return this.httpClient.get<ApiResponse>(this.API_url);
   }

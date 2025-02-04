@@ -1,0 +1,62 @@
+.table-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative; /* Ensure absolute positioning works inside */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #96c1ed;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+tr:hover {
+    background-color: #e3f2fd;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+mat-sort-header{
+    color: #4CAF50 !important;
+}
+
+/* Aad-Filter-btn*/
+.add-filter-tab{
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    gap: 10px;
+}
+
+.add-filter-tab > button {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.action-buttons {
+    display: flex;
+    flex: start;
+    gap: 10px;
+}

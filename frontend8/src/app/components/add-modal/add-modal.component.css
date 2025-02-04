@@ -1,0 +1,46 @@
+h1{
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 10px;
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+  width: 450px;
+}
+  
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+}
+
+.green-add-button{
+  color: #4CAF50;
+  background-color: white;
+}
+
+.green-add-button:hover{
+  color:white;
+  background-color:  #4CAF50;
+}
+
+.green-add-button:disabled,
+.green-add-button:disabled:hover {
+  color: gray !important;
+  background-color: lightgray !important;
+  cursor: not-allowed;
+}
+
+  

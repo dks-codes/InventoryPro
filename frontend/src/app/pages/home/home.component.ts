@@ -29,6 +29,7 @@ import { DeleteItemModalComponent } from '../../components/delete-item-modal/del
 @Component({
   selector: 'app-home',
   imports: [MatIconModule, MatTableModule, MatInputModule, MatFormFieldModule, MatPaginator, MatButtonModule, RouterLink, MatSortModule, HeaderComponent],
+  standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

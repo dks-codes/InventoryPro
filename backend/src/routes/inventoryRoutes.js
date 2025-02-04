@@ -1,13 +1,16 @@
 import express from 'express';
 import { addItem, deleteItem, getAllItems, getItem, searchItems, updateItem } from "../controllers/inventoryController.js";
+import { authenticateUser } from '../middleware/authMiddleware.js';
 
-const router = express.Router();
+const inventoryRouter = express.Router();
 
-router.get("/", getAllItems);
-router.get("/item/:id", getItem);
-router.post("/add", addItem);
-router.put("/update/:id", updateItem);
-router.delete("/delete/:id", deleteItem);
-router.get('/search', searchItems);
+inventoryRouter.use(authenticateUser);
 
-export default router;
+inventoryRouter.get("/", getAllItems);
+inventoryRouter.get("/item/:id", getItem);
+inventoryRouter.post("/add", addItem);
+inventoryRouter.put("/update/:id", updateItem);
+inventoryRouter.delete("/delete/:id", deleteItem);
+inventoryRouter.get('/search', searchItems);
+
+export default inventoryRouter;
