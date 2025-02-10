@@ -1,0 +1,19 @@
+<div class="forms-list">
+    <h2>Available Forms</h2>
+    <div class="forms-grid">
+      <div *ngFor="let form of forms" class="form-card">
+        <h3>{{ form.formId }}</h3>
+        <p>Created: {{ form.createdAt | date }}</p>
+        <!-- <p>Created: {{ getFormattedDate(form.createdAt) }}</p> -->
+        <p>Fields: {{ form.fields.length }}</p>
+        <div class="card-actions">
+          <button (click)="viewForm(form.formId)">View</button>
+          <button (click)="deleteForm(form.formId)" class="delete-button">Delete</button>
+          <button (click)="fillForm(form.formId)">Fill</button>
+        </div>
+      </div>
+    </div>
+    <button class="create-button" (click)="createNewForm()">
+      Create New Form
+    </button>
+  </div>

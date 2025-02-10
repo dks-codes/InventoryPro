@@ -1,0 +1,14 @@
+{
+    "widget": "radio",
+    "name": "",
+    "text": "",
+    "description": "",
+    "type": "string",
+    "mandatory": false,
+    "properties": {
+      "datasource": [],
+      "defaultValue": ""
+    },
+    "value": ""
+  }
+  

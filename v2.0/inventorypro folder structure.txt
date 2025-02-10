@@ -1,0 +1,50 @@
+📦 inventorypro
+ ┣ 📂 src
+ ┃ ┣ 📂 app
+ ┃ ┃ ┣ 📂 core
+ ┃ ┃ ┃ ┣ 📂 services
+ ┃ ┃ ┃ ┃ ┣ auth.service.ts
+ ┃ ┃ ┃ ┃ ┣ inventory.service.ts
+ ┃ ┃ ┃ ┃ ┗ dynamic-field.service.ts
+ ┃ ┃ ┃ ┣ 📂 guards
+ ┃ ┃ ┃ ┃ ┣ auth.guard.ts
+ ┃ ┃ ┃ ┃ ┗ admin.guard.ts
+ ┃ ┃ ┃ ┗ 📂 interceptors
+ ┃ ┃ ┃ ┃ ┗ auth.interceptor.ts
+ ┃ ┃ ┣ 📂 shared
+ ┃ ┃ ┃ ┣ 📂 components
+ ┃ ┃ ┃ ┃ ┣ header.component.ts
+ ┃ ┃ ┃ ┃ ┗ table.component.ts
+ ┃ ┃ ┃ ┗ 📂 directives
+ ┃ ┃ ┃   ┗ highlight.directive.ts
+ ┃ ┃ ┣ 📂 modules
+ ┃ ┃ ┃ ┣ 📂 auth
+ ┃ ┃ ┃ ┃ ┣ login.component.ts
+ ┃ ┃ ┃ ┃ ┣ signup.component.ts
+ ┃ ┃ ┃ ┃ ┗ auth.module.ts
+ ┃ ┃ ┃ ┣ 📂 inventory
+ ┃ ┃ ┃ ┃ ┣ inventory-list.component.ts
+ ┃ ┃ ┃ ┃ ┣ inventory-detail.component.ts
+ ┃ ┃ ┃ ┃ ┗ inventory.module.ts
+ ┃ ┃ ┃ ┣ 📂 dynamic-form
+ ┃ ┃ ┃ ┃ ┣ dynamic-form.component.ts
+ ┃ ┃ ┃ ┃ ┗ dynamic-form.module.ts
+ ┃ ┃ ┃ ┗ 📂 admin
+ ┃ ┃ ┃   ┣ manage-users.component.ts
+ ┃ ┃ ┃   ┗ admin.module.ts
+ ┃ ┃ ┣ 📂 pages
+ ┃ ┃ ┃ ┣ home.component.ts
+ ┃ ┃ ┃ ┣ not-found.component.ts
+ ┃ ┃ ┃ ┗ dashboard.component.ts
+ ┃ ┃ ┣ 📂 models
+ ┃ ┃ ┃ ┣ user.model.ts
+ ┃ ┃ ┃ ┣ inventory.model.ts
+ ┃ ┃ ┃ ┗ dynamic-field.model.ts
+ ┃ ┃ ┣ app-routing.module.ts
+ ┃ ┃ ┣ app.component.ts
+ ┃ ┃ ┗ app.module.ts
+ ┃ ┣ 📂 assets
+ ┃ ┣ 📂 environments
+ ┃ ┣ index.html
+ ┃ ┣ styles.css
+ ┃ ┗ main.ts

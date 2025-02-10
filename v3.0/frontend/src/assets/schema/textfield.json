@@ -1,0 +1,14 @@
+{
+    "widget": "textfield",
+    "name": "",
+    "text": "",
+    "description": "",
+    "type": "string",
+    "mandatory": false,
+    "disabled": false,
+    "properties": {
+      "defaultValue": "",
+      "maxLength": 100
+    },
+    "value": ""
+  }

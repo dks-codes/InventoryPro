@@ -1,0 +1,15 @@
+{
+    "widget": "numberfield",
+    "name": "",
+    "text": "",
+    "description": "",
+    "type": "number",
+    "mandatory": false,
+    "properties": {
+      "defaultValue": null,
+      "min": 0,
+      "max": 100
+    },
+    "value": null
+  }
+  

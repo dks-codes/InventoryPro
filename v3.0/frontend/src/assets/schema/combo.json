@@ -1,0 +1,14 @@
+{
+    "widget": "combo",
+    "name": "",
+    "text": "",
+    "description": "",
+    "type": "string",
+    "mandatory": false,
+    "properties": {
+      "datasource": [],
+      "multiselect": false
+    },
+    "value": ""
+  }
+  

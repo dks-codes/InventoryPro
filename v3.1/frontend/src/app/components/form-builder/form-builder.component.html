@@ -1,0 +1,36 @@
+<div class="form-builder">
+  <!-- Widget Palette (Left Sidebar) -->
+  <div class="widget-palette">
+    <h3>Available Widgets</h3>
+    <div *ngFor="let widget of widgetTemplates" 
+         class="widget-item"
+         (click)="addWidget(widget)">
+      {{ widget.widget | titlecase }}
+    </div>
+  </div>
+  
+  <!-- Form Preview (Main Section) -->
+  <div class="form-preview">
+    <h3>Form Preview</h3>
+    <div *ngIf="formFields.length === 0" class="empty-state">
+      <p>No widgets added. Click on a widget to add it to the form.</p>
+    </div>
+    
+    <div *ngFor="let field of formFields; let i = index" class="form-field">
+      <div class="field-header">
+        <span>{{ field.text || field.widget }}</span>
+        <button class="remove-btn" (click)="removeField(i)">Remove</button>
+      </div>
+      <app-widget-properties
+        [widget]="field"
+        (widgetChange)="saveField(i, $event)">
+      </app-widget-properties>
+    </div>
+
+    <button class="save-btn" 
+            (click)="saveForm()" 
+            [disabled]="!formFields.length">
+      Save Form
+    </button>
+  </div>
+</div>

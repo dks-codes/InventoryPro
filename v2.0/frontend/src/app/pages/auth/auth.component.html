@@ -1,0 +1,13 @@
+<div class="login-container">
+    <mat-card>
+        <mat-tab-group (selectedTabChange) = "resetErrorMsg()">
+            <mat-tab label="Login">
+                <app-login></app-login>
+            </mat-tab>
+
+            <mat-tab label="Signup">
+                <app-signup></app-signup>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

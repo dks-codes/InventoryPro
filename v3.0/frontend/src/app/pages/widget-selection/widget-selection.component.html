@@ -1,0 +1,81 @@
+
+<!-- Select Widget -->
+<mat-card class="widget-card">
+    <h2>Select Widget</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Widget</mat-label>
+      <mat-select [(ngModel)]="selectedWidget" (selectionChange)="onWidgetChange()">
+        <mat-option value="textfield">Text Field</mat-option>
+        <mat-option value="numberfield">Number Field</mat-option>
+        <mat-option value="radio">Radio</mat-option>
+        <mat-option value="combo">Combo Box</mat-option>
+      </mat-select>
+    </mat-form-field>
+</mat-card>
+  
+<!-- Configure Widget -->
+  <mat-card *ngIf="widgetConfig" class="config-card">
+    <h2>Configure Widget</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="widgetConfig.name" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Text</mat-label>
+      <input matInput [(ngModel)]="widgetConfig.text" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="widgetConfig.description" />
+    </mat-form-field>
+  
+    <mat-checkbox [(ngModel)]="widgetConfig.mandatory">Mandatory</mat-checkbox>
+  
+    <div *ngIf="widgetConfig.properties?.datasource">
+      <mat-form-field appearance="outline">
+        <mat-label>Options (comma-separated)</mat-label>
+        <input matInput (change)="updateDatasource($event.target.value)" />
+      </mat-form-field>
+    </div>
+  
+    <button mat-raised-button color="primary" (click)="addWidgetToForm()">Add to Form</button>
+  </mat-card>
+  
+  <mat-card *ngIf="formWidgets.length > 0" class="form-preview">
+    <h2>Generated Form</h2>
+    <form #form="ngForm" (ngSubmit)="submitForm()">
+      <div *ngFor="let widget of formWidgets">
+        <mat-form-field appearance="outline" *ngIf="widget.widget === 'textfield'">
+          <mat-label>{{ widget.text }}</mat-label>
+          <input matInput [(ngModel)]="widget.value" name="{{widget.name}}" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" *ngIf="widget.widget === 'numberfield'">
+          <mat-label>{{ widget.text }}</mat-label>
+          <input matInput type="number" [(ngModel)]="widget.value" name="{{widget.name}}" />
+        </mat-form-field>
+  
+        <mat-radio-group *ngIf="widget.widget === 'radio'" [(ngModel)]="widget.value" name="{{widget.name}}">
+          <label>{{ widget.text }}</label>
+          <mat-radio-button *ngFor="let option of widget.properties.datasource" [value]="option">
+            {{ option }}
+          </mat-radio-button>
+        </mat-radio-group>
+  
+        <mat-form-field appearance="outline" *ngIf="widget.widget === 'combo'">
+          <mat-label>{{ widget.text }}</mat-label>
+          <mat-select [(ngModel)]="widget.value" name="{{widget.name}}">
+            <mat-option *ngFor="let option of widget.properties.datasource" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </mat-card>
+  
+  <p *ngIf="formWidgets.length === 0">No widgets added to the form.</p>  

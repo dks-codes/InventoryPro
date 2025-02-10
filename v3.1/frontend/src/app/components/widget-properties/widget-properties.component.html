@@ -1,0 +1,100 @@
+<form [formGroup]="propertiesForm" (ngSubmit)="onSubmit()" class="properties-form">
+  <h3>Widget Properties</h3>
+
+  <!-- Common Properties -->
+  <div class="property-group">
+    <label>
+      Field Name:
+      <input type="text" formControlName="name" placeholder="e.g., firstName, itemName">
+    </label>
+
+    <label>
+      Display Text:
+      <input type="text" formControlName="text" placeholder="e.g., First Name, Item Name">
+    </label>
+
+    <label>
+      Description:
+      <input type="text" formControlName="description" placeholder="Help text for the field">
+    </label>
+
+    <label class="checkbox-label">
+      <input type="checkbox" formControlName="mandatory">
+      Required Field
+    </label>
+  </div>
+
+  <!-- Widget-specific Properties -->
+  <ng-container [ngSwitch]="widget.widget">
+    <!-- TextField Properties -->
+    <div *ngSwitchCase="'textfield'" class="property-group">
+      <label>
+        Max Length:
+        <input type="number" formControlName="maxLength" min="1">
+      </label>
+
+      <label>
+        Default Value:
+        <input type="text" formControlName="defaultValue">
+      </label>
+
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="disabled">
+        Disabled
+      </label>
+    </div>
+
+    <!-- NumberField Properties -->
+    <div *ngSwitchCase="'numberfield'" class="property-group">
+      <label>
+        Minimum Value:
+        <input type="number" formControlName="min">
+      </label>
+
+      <label>
+        Maximum Value:
+        <input type="number" formControlName="max">
+      </label>
+
+      <label>
+        Default Value:
+        <input type="number" formControlName="defaultValue">
+      </label>
+    </div>
+
+    <!-- Radio Button Properties -->
+    <div *ngSwitchCase="'radio'" class="property-group">
+      <h4>Options</h4>
+      <div formArrayName="options">
+        <div *ngFor="let option of optionsArray.controls; let i=index" [formGroupName]="i" class="option-row">
+          <input type="text" formControlName="label" placeholder="Option Label">
+          <input type="text" formControlName="value" placeholder="Option Value">
+          <button type="button" class="btn btn-remove" (click)="removeOption(i)">✖</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-add" (click)="addOption()">+ Add Option</button>
+    </div>
+
+    <!-- Combo Box Properties -->
+    <div *ngSwitchCase="'combo'" class="property-group">
+      <h4>Options</h4>
+      <div formArrayName="options">
+        <div *ngFor="let option of optionsArray.controls; let i=index" [formGroupName]="i" class="option-row">
+          <input type="text" formControlName="label" placeholder="Option Label">
+          <input type="text" formControlName="value" placeholder="Option Value">
+          <button type="button" class="btn btn-remove" (click)="removeOption(i)">✖</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-add" (click)="addOption()">+ Add Option</button>
+
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="multiselect">
+        Allow Multiple Selection
+      </label>
+    </div>
+  </ng-container>
+
+  <button type="submit" class="btn btn-save" [disabled]="propertiesForm.invalid">
+    Save Widget
+  </button>
+</form>

@@ -1,0 +1,15 @@
+<form [formGroup]="signupForm" (ngSubmit)="Onsignup()">
+    <mat-form-field>
+      <input matInput placeholder="Username"formControlName="username" name="username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" placeholder="Email" formControlName="email" required>
+      <mat-error *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched">
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+    </mat-form-field>
+    <button mat-raised-button class="btn-primary" type="submit" [disabled]="signupForm.invalid">Signup</button>
+  </form>

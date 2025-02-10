@@ -1,0 +1,8 @@
+<div [formGroup]="form">
+    <label>{{ field.text }}</label>
+    <select [formControlName]="field.name">
+        <option *ngFor="let option of field.properties.datasource" [value]="option">
+        {{ option }}
+        </option>
+    </select>
+</div>

@@ -1,0 +1,34 @@
+{
+  "fields": [
+    {
+      "widget": "textfield",
+      "name": "student_name",
+      "text": "Student Name",
+      "description": "",
+      "type": "string",
+      "mandatory": true,
+      "disabled": false,
+      "properties": {
+        "defaultValue": "",
+        "maxLength": 100
+      },
+      "value": ""
+    },
+    {
+      "widget": "numberfield",
+      "name": "roll_no",
+      "text": "Roll No",
+      "description": "Roll no of student",
+      "type": "number",
+      "mandatory": false,
+      "properties": {
+        "defaultValue": null,
+        "min": 1,
+        "max": 100
+      },
+      "value": null
+    }
+  ],
+  "formId": "FORM_M6YOJ1NR_VLLRP",
+  "createdAt": "2025-02-10T06:35:53.511Z"
+}

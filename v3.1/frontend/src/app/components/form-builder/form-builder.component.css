@@ -1,0 +1,123 @@
+/* Container Layout */
+.form-builder {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Sidebar (Widget Palette) */
+.widget-palette {
+  width: 250px;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.widget-palette h3 {
+  font-size: 18px;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Widget Item Styling */
+.widget-item {
+  padding: 10px;
+  margin: 6px 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.widget-item:hover {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+/* Form Preview */
+.form-preview {
+  flex: 1;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-preview h3 {
+  font-size: 20px;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Empty State (When No Fields Added) */
+.empty-state {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+}
+
+/* Form Fields */
+.form-field {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Field Header (Name + Remove Button) */
+.field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Remove Button */
+.remove-btn {
+  padding: 6px 12px;
+  border: none;
+  background: #dc3545;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.remove-btn:hover {
+  background: #c82333;
+}
+
+/* Save Button */
+.save-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: #218838;
+}
+
+.save-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
