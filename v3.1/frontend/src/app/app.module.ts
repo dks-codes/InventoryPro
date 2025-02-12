@@ -10,6 +10,11 @@ import { WidgetPropertiesComponent } from './components/widget-properties/widget
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilderComponent } from './components/form-builder/form-builder.component';
 import { CommonModule } from '@angular/common';
+import { TextfieldComponent } from './components/widgets/textfield/textfield.component';
+import { NumberfieldComponent } from './components/widgets/numberfield/numberfield.component';
+import { RadioComponent } from './components/widgets/radio/radio.component';
+import { ComboComponent } from './components/widgets/combo/combo.component';
+import { BaseFieldComponent } from './components/widgets/base-field/base-field.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { CommonModule } from '@angular/common';
     FormListComponent,
     FormViewComponent,
     WidgetPropertiesComponent,
-    FormBuilderComponent
+    FormBuilderComponent,
+    TextfieldComponent,
+    NumberfieldComponent,
+    RadioComponent,
+    ComboComponent,
+    BaseFieldComponent
   ],
   imports: [
     BrowserModule,

@@ -11,8 +11,8 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
 })
 export class FormBuilderComponent implements OnInit {
 
-  widgetTemplates: any[] = [];
-  formFields: any[] = [];
+  widgetTemplates: any[] = []; // Array to store widget templates
+  formFields: any[] = []; // Array to store form fields (Basically, stores different widgets of form)
   formId: string | null = null;
 
   constructor(private formBuilderService: FormBuilderService, private router: Router, private route: ActivatedRoute) {}
@@ -33,12 +33,7 @@ export class FormBuilderComponent implements OnInit {
     this.formBuilderService.getWidgetTemplates()
       .subscribe((templates) => {
         console.log("Received templates:", templates);
-        if (Array.isArray(templates)) {
           this.widgetTemplates = templates;
-        } else {
-          console.error("Unexpected response:", templates);
-          this.widgetTemplates = [];
-        }
       },(error) => console.error("Error fetching templates:", error));
   }
 
@@ -51,37 +46,23 @@ export class FormBuilderComponent implements OnInit {
   }
 
 
-  addWidget(template: any) {
-    this.formFields.push({ ...template });
+  /* Adds widget to Form */
+  addWidget(widget: any) {
+    this.formFields.push({ ...widget }); // Shallow copy of widget added to formFields
     console.log(this.formFields);
   }
 
+  /* Removes widget from Form */
   removeField(index: number) {
     this.formFields.splice(index, 1);
   }
 
   saveField(index: number, updatedWidget: any) {
     this.formFields[index] = updatedWidget;
-    console.log(updatedWidget);
+    alert("Widget saved successfully");
     console.log(this.formFields);
   }
 
-  // saveForm() {
-  //   const formSchema = {
-  //     fields: this.formFields
-  //   };
-    
-  //   this.formBuilderService.saveFormSchema(formSchema)
-  //     .subscribe(response => {
-  //       console.log('Form saved successfully', response);
-  //       alert("Form saved successfully");
-  //       // Handle success (e.g., redirect to form view)
-  //       this.router.navigate(['/form-view', response.formId]);
-  //     },
-  //   (error) => {
-  //     console.error("Error saving form:", error); 
-  //   });
-  // }
 
   saveForm() {
     const formSchema = {
@@ -90,10 +71,14 @@ export class FormBuilderComponent implements OnInit {
     };
 
     this.formBuilderService.saveFormSchema(formSchema)
-      .subscribe(response => {
+      .subscribe((response) => {
         console.log('Form saved successfully', response);
         alert("Form saved successfully");
-        this.router.navigate(['/form-view', response.formId]);
+        if (!this.formId) {
+          this.formId = response.formId; // Set formId after creating a new form
+          // console.log("Form ID:", this.formId);
+        }
+        this.router.navigate(['/form-view', this.formId]);
       }, error => console.error("Error saving form:", error));
   }
 

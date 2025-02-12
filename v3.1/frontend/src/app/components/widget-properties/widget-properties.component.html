@@ -1,4 +1,4 @@
-<form [formGroup]="propertiesForm" (ngSubmit)="onSubmit()" class="properties-form">
+<form [formGroup]="propertiesForm" (ngSubmit)="onSubmitWidget()" class="properties-form">
   <h3>Widget Properties</h3>
 
   <!-- Common Properties -->
@@ -29,7 +29,7 @@
     <!-- TextField Properties -->
     <div *ngSwitchCase="'textfield'" class="property-group">
       <label>
-        Max Length:
+        Max Length(Minimum is 1):
         <input type="number" formControlName="maxLength" min="1">
       </label>
 

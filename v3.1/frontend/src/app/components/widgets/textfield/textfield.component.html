@@ -1,0 +1,17 @@
+<div [formGroup]="formGroup">
+       <label [for]="field.name">
+         {{ field.text }}
+         <span *ngIf="field.mandatory" class="required">*</span>
+       </label>
+       
+       <input [type]="field.type"
+              [id]="field.name"
+              [formControlName]="field.name"
+              [maxlength]="field.properties.maxLength"
+              [placeholder]="field.description"
+              [class.invalid]="isFieldInvalid(field.name)">
+       
+       <div *ngIf="isFieldInvalid(field.name)" class="error-message">
+         {{ getErrorMessage() }}
+       </div>
+     </div>

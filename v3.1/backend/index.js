@@ -44,60 +44,8 @@ app.get('/api/widgets', async (req, res) => {
 });
 
 
-/* GET PARTICULAR FORM SCHEMA */
-app.get('/api/forms/:formId', async (req, res) => {
-    try {
-      const formId = req.params.formId;
-      
-      // Try to get from MongoDB first
-      const dbForm = await FormSchema.findOne({ formId });
-      
-      if (dbForm) {
-        return res.status(200).json(dbForm);
-      }
-  
-      // If not in DB, try to get from file
-      const fileForm = await FormStorageManager.getFormSchema(formId);
-      
-      if (fileForm) {
-        return res.json(fileForm);
-      }
-  
-      res.status(404).json({ error: 'Form not found' });
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to retrieve form' });
-    }
-});
-
-
-/* DELETE PARTICULAR FORM SCHEMA */
-app.delete('/api/forms/:formId', async (req, res) => {
-  try {
-    const formId = req.params.formId;
-    
-    // Try to get from MongoDB first
-    const dbForm = await FormSchema.findOneAndDelete({ formId });
-    
-    if (!dbForm) {
-      return res.status(404).json({ error: 'Form not found in database' });
-    }
-
-
-    // Delete form schema file from the filesystem
-    const filePath = path.join(__dirname, '../form-schemas', `${formId}.json`);
-
-    if(!filePath) return res.status(404).json({ error: 'Form schema file not found' });
-
-    FormStorageManager.deleteFormSchema(formId);
-
-    return res.status(200).json({ message: 'Form deleted successfully' });  
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve form' });
-  }
-});
-  
   // Create new form
-  app.post('/api/forms', async (req, res) => {
+  app.post('/api/forms/create-form', async (req, res) => {
     try {
       const formId = generateFormId();
       
@@ -122,7 +70,90 @@ app.delete('/api/forms/:formId', async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: 'Failed to save form schema' });
     }
-  });
+});
+
+/* GET PARTICULAR FORM SCHEMA (FORM) */
+app.get('/api/forms/get-form/:formId', async (req, res) => {
+    try {
+      const formId = req.params.formId;
+      
+      // Try to get from MongoDB first
+      const dbForm = await FormSchema.findOne({ formId });
+      
+      if (dbForm) {
+        return res.status(200).json(dbForm);
+      }
+      else{
+        console.log("Not found in DB, Searching in folder for json file...")
+      }
+  
+      // If not in DB, try to get from file
+      const fileForm = await FormStorageManager.getFormSchema(formId);
+      
+      if (fileForm) {
+        console.log("Found form in folder in json format")
+        return res.json(fileForm);
+      }
+  
+      res.status(404).json({ error: 'Form not found' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to retrieve form' });
+    }
+});
+
+/* UPDATE FORM SCHEMA */
+app.put('/api/forms/update-form/:formId', async (req, res) => {
+  try {
+    const formId = req.params.formId;
+    const updatedFields = req.body.fields;
+    
+    // Try to get from MongoDB first
+    const updatedForm  = await FormSchema.findOneAndUpdate({ formId }, { fields: updatedFields }, { new: true, upsert: false });
+    
+    if (!updatedForm) {
+      return res.status(404).json({ error: 'Form not found' });
+    }
+
+    // If not in DB, try to get from file
+    const fileForm = await FormStorageManager.updateFormSchema(formId, updatedFields);
+    
+    if (fileForm) {
+      return res.status(200).json({ message: 'Form updated successfully', form: updatedForm });;
+    }
+
+    res.status(404).json({ error: 'Form not found' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update form' });
+  }
+});
+
+/* DELETE PARTICULAR FORM SCHEMA (FORM) */
+app.delete('/api/forms/delete-form/:formId', async (req, res) => {
+  try {
+    const formId = req.params.formId;
+    
+    // Try to get from MongoDB first
+    const dbForm = await FormSchema.findOneAndDelete({ formId });
+    
+    if (!dbForm) {
+      return res.status(404).json({ error: 'Form not found in database' });
+    }
+
+
+    // Delete form schema file from the filesystem
+    const filePath = path.join(__dirname, '../form-schemas', `${formId}.json`);
+
+    if(!filePath) return res.status(404).json({ error: 'Form schema file not found' });
+
+    await FormStorageManager.deleteFormSchema(formId);
+
+    return res.status(200).json({ message: 'Form deleted successfully' });  
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve form' });
+  }
+});
+  
+
   
   // Submit form data
   app.post('/api/form-submissions', async (req, res) => {
@@ -147,10 +178,17 @@ app.delete('/api/forms/:formId', async (req, res) => {
   // GET ALL FORMS
 app.get('/api/get-all-forms', async (req, res) => {
   try {
-      const forms = await FormSchema.find({}, { _id: 0, __v: 0 }); // Exclude _id and __v fields
+    const forms = await FormSchema.find({}, { _id: 0, __v: 0 }); // Exclude _id and __v fields
+
+    const schemas = await FormStorageManager.getAllFormSchemas();
+
+    if (schemas.length > forms.length) {
+      res.status(200).json(schemas);
+    } else {
       res.status(200).json(forms);
+    }
   } catch (error) {
-      res.status(500).json({ error: 'Failed to retrieve forms' });
+    res.status(500).json({ error: 'Failed to retrieve forms' });
   }
 });
 

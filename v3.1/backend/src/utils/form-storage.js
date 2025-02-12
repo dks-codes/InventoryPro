@@ -48,11 +48,57 @@ class FormStorageManager {
   }
 
 
-  // Get form schema
+  /* Get form schema */
   async getFormSchema(formId) {
     const filePath = path.join(this.schemasDir, `${formId}.json`);
     const content = await fs.readFile(filePath, 'utf8');
     return JSON.parse(content);
+  }
+
+  /* GET ALL FORM SCHEMAS */
+  async getAllFormSchemas() {
+    const files = await fs.readdir(this.schemasDir);
+    const jsonFiles = files.filter(file => file.endsWith('.json'));
+    const formSchemas = await Promise.all(
+      jsonFiles.map(async (file) => {
+        const filePath = path.join(this.schemasDir, file);
+        const content = await fs.readFile(filePath, 'utf8');
+        return JSON.parse(content);
+      })
+    );
+    return formSchemas;
+  }
+  
+
+  /* UPDATE JSON FORM SCHEMA */
+  async updateFormSchema(formId, updatedFields) {
+    try {
+      const filePath = path.join(this.schemasDir, `${formId}.json`);
+
+      // Check if the file exists
+      try {
+        await fs.access(filePath);
+      } catch (err) {
+        throw new Error(`Form JSON file not found: ${filePath}`);
+      }
+
+      // Read the existing file
+      const content = await fs.readFile(filePath, 'utf8');
+      const formSchema = JSON.parse(content);
+
+      // Update the fields
+      formSchema.fields = updatedFields;
+
+      // Write back to the file
+      const jsonContent = JSON.stringify(formSchema, null, 2);
+      await fs.writeFile(filePath, jsonContent, 'utf8');
+
+      return filePath;
+    } 
+    catch (error) {
+      console.error("Error updating form schema:", error);
+      throw error;
+    }
   }
 
 

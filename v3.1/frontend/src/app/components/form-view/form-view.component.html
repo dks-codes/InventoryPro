@@ -2,69 +2,17 @@
   <h2>{{ formSchema.formId }}</h2>
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <div *ngFor="let field of formSchema.fields" class="form-field">
-      <label [for]="field.name">
-        {{ field.text }} 
-        <span *ngIf="field.mandatory" class="required">*</span>
-      </label>
       
       <ng-container [ngSwitch]="field.widget">
-        <!-- TextField Widget -->
-        <input *ngSwitchCase="'textfield'"
-               [type]="field.type"
-               [id]="field.name"
-               [formControlName]="field.name"
-               [maxlength]="field.properties.maxLength"
-               [placeholder]="field.description"
-               class="form-input"
-               [class.invalid]="isFieldInvalid(field.name)">
-        
-        <!-- NumberField Widget -->
-        <input *ngSwitchCase="'numberfield'"
-               type="number"
-               [id]="field.name"
-               [formControlName]="field.name"
-               [min]="field.properties.min"
-               [max]="field.properties.max"
-               [placeholder]="field.description"
-               class="form-input"
-               [class.invalid]="isFieldInvalid(field.name)">
-        
-        <!-- Radio Widget -->
-        <div *ngSwitchCase="'radio'" class="radio-group">
-          <div *ngFor="let option of field.properties.datasource" 
-               class="radio-option">
-            <input type="radio"
-                   [id]="field.name + '_' + option.value"
-                   [formControlName]="field.name"
-                   [value]="option.value">
-            <label [for]="field.name + '_' + option.value">
-              {{ option.label }}
-            </label>
-          </div>
-        </div>
-        
-        <!-- Combo Widget -->
-        <select *ngSwitchCase="'combo'"
-                [id]="field.name"
-                [formControlName]="field.name"
-                [multiple]="field.properties.multiselect"
-                class="form-input"
-                [class.invalid]="isFieldInvalid(field.name)">
-          <option value="">Select...</option>
-          <option *ngFor="let option of field.properties.datasource"
-                  [value]="option.value">
-            {{ option.label }}
-          </option>
-        </select>
+        <app-textfield *ngSwitchCase="'textfield'" [formGroup]="formGroup" [field]="field"></app-textfield>
+        <app-numberfield *ngSwitchCase="'numberfield'" [formGroup]="formGroup" [field]="field"></app-numberfield>
+        <app-radio *ngSwitchCase="'radio'" [formGroup]="formGroup" [field]="field"></app-radio>
+        <app-combo *ngSwitchCase="'combo'" [formGroup]="formGroup" [field]="field"></app-combo>
       </ng-container>
-      
-      <div *ngIf="isFieldInvalid(field.name)" class="error-message">
-        {{ getErrorMessage(field) }}
-      </div>
+
     </div>
-    
-    <button type="submit" class="submit-button"
-            [disabled]="formGroup.invalid || submitting">
+
+    <button type="submit" class="submit-button" [disabled]="formGroup.invalid || submitting">
       Submit
     </button>
   </form>

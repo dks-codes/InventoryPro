@@ -1,0 +1,47 @@
+<div [formGroup]="formGroup">
+  <label [for]="field.name">
+    {{ field.text }}
+    <span *ngIf="field.mandatory" class="required">*</span>
+  </label>
+
+  <!-- Multi-Select Dropdown -->
+
+  <ng-container *ngIf="field.properties.multiselect; else singleSelect">
+
+    <div class="dropdown">
+      <button type="button" class="dropdown-toggle" (click)="toggleDropdown()">
+        Select Options ▼
+      </button>
+  
+      <ul *ngIf="dropdownOpen" class="dropdown-menu">
+        <li *ngFor="let option of field.properties.datasource">
+          <input type="checkbox" [checked]="isOptionSelected(field.name, option.value)"
+                 (change)="onCheckboxChange(field.name, option.value)">
+          {{ option.label }}
+        </li>
+      </ul>
+    </div>
+
+
+
+    <!-- Display Selected Options as Tags -->
+    <div class="selected-options">
+      <span *ngFor="let option of getSelectedOptions(field.name)" class="option-tag">
+        {{ option.label }}
+        <button type="button" (click)="removeSelectedOption(field.name, option.value)">×</button>
+      </span>
+    </div>
+  </ng-container>
+
+  <ng-template #singleSelect >
+    <select [id]="field.name" [formControlName]="field.name">
+      <option *ngFor="let option of field.properties.datasource" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </ng-template>
+
+  <div *ngIf="isFieldInvalid(field.name)" class="error-message">
+    {{ getErrorMessage() }}
+  </div>
+</div>

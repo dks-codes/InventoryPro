@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-widget-properties',
   templateUrl: './widget-properties.component.html',
@@ -12,7 +11,7 @@ export class WidgetPropertiesComponent implements OnInit {
   @Input() widget: any; // Take input from parent
   @Output() widgetChange = new EventEmitter<any>(); // Emit output to parent
   
-  propertiesForm: FormGroup;
+  propertiesForm: FormGroup; // Will contain baseProperties & specificProperties
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -20,7 +19,9 @@ export class WidgetPropertiesComponent implements OnInit {
     this.createForm();
   }
 
+  /* Widget Form Creation*/
   private createForm() {
+    // form controls - name, text, description, mandatory
     const baseProperties = {
       name: [this.widget.name, Validators.required],
       text: [this.widget.text, Validators.required],
@@ -50,12 +51,11 @@ export class WidgetPropertiesComponent implements OnInit {
       case 'radio':
       case 'combo':
         specificProperties = {
-          options: this.formBuilder.array(
-            (this.widget.properties.datasource || []).map((option: any) =>
-              this.formBuilder.group({
-                label: [option.label, Validators.required],
-                value: [option.value, Validators.required]
-              })
+          options: this.formBuilder.array((this.widget.properties.datasource || []).map((option: any) =>
+                    this.formBuilder.group({
+                      label: [option.label, Validators.required],
+                      value: [option.value, Validators.required]
+                  })
             )
           )
         };
@@ -72,8 +72,9 @@ export class WidgetPropertiesComponent implements OnInit {
     });
   }
 
+  /* Gets form-control "options" from Form-Group "propertiesForm" and returns a form-array */
   get optionsArray() {
-    return this.propertiesForm.get('options') as FormArray;
+    return this.propertiesForm.get('options') as FormArray; 
   }
 
   addOption() {
@@ -87,15 +88,16 @@ export class WidgetPropertiesComponent implements OnInit {
   }
 
   removeOption(index: number) {
-    const optionsFormArray = this.propertiesForm.get('options') as FormArray;
+    // Gets form-control "options" from Form-Group "propertiesForm" and returns it as form-array
+    const optionsFormArray = this.propertiesForm.get('options') as FormArray; 
     optionsFormArray.removeAt(index);
   }
 
 
-  onSubmit() {
+  onSubmitWidget() {
     if (this.propertiesForm.valid) {
-      const updatedWidget = { ...this.widget };
-      const formValue = this.propertiesForm.value;
+      const updatedWidget = { ...this.widget }; // Shallow copy of widget from parent. This will be updated with new values
+      const formValue = this.propertiesForm.value; // FormGroup has a lot of properties like value, controls, touched, validators, tec
 
       // Update common properties
       updatedWidget.name = formValue.name;
@@ -132,5 +134,4 @@ export class WidgetPropertiesComponent implements OnInit {
       console.log("Invalid form")
     }
   }
-
 }

@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'form-builder', component: FormBuilderComponent},
   { path: 'form-builder/:formId', component: FormBuilderComponent},
   { path: 'form-view/:formId', component: FormViewComponent},
-  { path: '', redirectTo: '/list-form', pathMatch: 'full' }
+  { path: '', redirectTo: '/list-form', pathMatch: 'full' },
+  { path: '**', redirectTo: '/list-form', pathMatch: 'full' },
 
 ];
 

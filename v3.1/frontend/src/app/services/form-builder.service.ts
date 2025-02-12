@@ -15,16 +15,27 @@ export class FormBuilderService {
     return this.http.get<any[]>(`${this.apiUrl}/widgets`);
   }
 
+  // saveFormSchema(formSchema: any): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/forms`, formSchema);
+  // }
+
   saveFormSchema(formSchema: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/forms`, formSchema);
+    if (formSchema.formId) {
+      // If formId exists, update the existing form
+      return this.http.put(`${this.apiUrl}/forms/update-form/${formSchema.formId}`, formSchema);
+    } else {
+      // Otherwise, create a new form
+      return this.http.post(`${this.apiUrl}/forms/create-form`, formSchema);
+    }
   }
+  
 
   getFormById(formId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/forms/${formId}`);
+    return this.http.get(`${this.apiUrl}/forms/get-form/${formId}`);
   }
 
   deleteFormById(formId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/forms/${formId}`);
+    return this.http.delete(`${this.apiUrl}/forms/delete-form/${formId}`);
   }
 
   submitFormData(formData: any): Observable<any> {

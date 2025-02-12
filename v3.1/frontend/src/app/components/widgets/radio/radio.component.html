@@ -1,0 +1,15 @@
+<div [formGroup]="formGroup">
+  <label>{{ field.text }}</label>
+
+  <div *ngFor="let option of field.properties.datasource">
+    <input type="radio"
+           [id]="field.name + '_' + option.value"
+           [formControlName]="field.name"
+           [value]="option.value">
+    <label [for]="field.name + '_' + option.value">{{ option.label }}</label>
+  </div>
+
+  <div *ngIf="isFieldInvalid(field.name)" class="error-message">
+    {{ getErrorMessage() }}
+  </div>
+</div>

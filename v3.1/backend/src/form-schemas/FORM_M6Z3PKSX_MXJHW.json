@@ -1,4 +1,5 @@
 {
+  "formId": "FORM_M6Z3PKSX_MXJHW",
   "fields": [
     {
       "widget": "textfield",
@@ -27,8 +28,33 @@
         "max": 100
       },
       "value": null
+    },
+    {
+      "widget": "combo",
+      "name": "hobbies",
+      "text": "Hobbies",
+      "description": "",
+      "type": "string",
+      "mandatory": true,
+      "properties": {
+        "datasource": [
+          {
+            "label": "music",
+            "value": "music"
+          },
+          {
+            "label": "art",
+            "value": "art"
+          },
+          {
+            "label": "dance",
+            "value": "dance"
+          }
+        ],
+        "multiselect": true
+      },
+      "value": ""
     }
   ],
-  "formId": "FORM_M6YOJ1NR_VLLRP",
-  "createdAt": "2025-02-10T06:35:53.511Z"
+  "createdAt": "2025-02-10T13:40:52.497Z"
 }

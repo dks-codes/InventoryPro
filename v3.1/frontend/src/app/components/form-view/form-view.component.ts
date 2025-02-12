@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
 
@@ -9,7 +9,6 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   styleUrls: ['./form-view.component.css']
 })
 export class FormViewComponent implements OnInit {
-
   formSchema: any;
   formGroup: FormGroup;
   submitting = false;
@@ -34,72 +33,68 @@ export class FormViewComponent implements OnInit {
   }
 
   private createFormGroup() {
-    const group: { [key: string]: any } = {};  // key wil be string and can be anything like display, text, value, etc
-    
+    const group: { [key: string]: any } = {};
+  
     this.formSchema.fields.forEach((field: any) => {
-      console.log(field);
-      const validators = [];
-      
+      const validators = []; // To psuh all validators to be applied on the input field
+  
       if (field.mandatory) {
         validators.push(Validators.required);
       }
-      
+  
       switch (field.widget) {
         case 'textfield':
           if (field.properties.maxLength) {
             validators.push(Validators.maxLength(field.properties.maxLength));
           }
+          group[field.name] = [field.properties.defaultValue || '', validators];
           break;
-          
+  
         case 'numberfield':
           validators.push(Validators.min(field.properties.min));
           validators.push(Validators.max(field.properties.max));
+          group[field.name] = [field.properties.defaultValue || null, validators];
+          break;
+  
+        case 'radio':
+          group[field.name] = [field.properties.defaultValue || null, validators];
+          break;
+  
+        case 'combo':
+          if (field.properties.multiselect) {
+            // Initialize as FormArray with default values if any
+            const defaultValues = field.properties.defaultValue || [];
+            // produces an array of FormControls
+            const formControls = defaultValues.map((value: any) => this.formBuilder.control(value)); 
+            group[field.name] = this.formBuilder.array(formControls, validators);
+          } else {
+            // Single select combo
+            group[field.name] = [field.properties.defaultValue || null, validators];
+          }
+          break;
+  
+        default:
+          group[field.name] = [field.properties.defaultValue || '', validators];
           break;
       }
-      
-      group[field.name] = [field.properties.defaultValue || '', validators];
     });
-    
+  
     this.formGroup = this.formBuilder.group(group);
   }
 
-  isFieldInvalid(fieldName: string): boolean {
-    const control = this.formGroup.get(fieldName);
-    return control.invalid && (control.dirty || control.touched);
-  }
-
-  getErrorMessage(field: any): string {
-    const control = this.formGroup.get(field.name);
-    
-    if (control.hasError('required')) {
-      return `${field.text} is required`;
-    }
-    
-    if (control.hasError('maxlength')) {
-      return `${field.text} cannot be longer than ${field.properties.maxLength} characters`;
-    }
-    
-    if (control.hasError('min')) {
-      return `${field.text} must be at least ${field.properties.min}`;
-    }
-    
-    if (control.hasError('max')) {
-      return `${field.text} must be at most ${field.properties.max}`;
-    }
-    
-    return '';
-  }
 
   onSubmit() {
     if (this.formGroup.valid) {
       this.submitting = true;
       
+      const submissions = Object.entries(this.formGroup.value).map(([name, value]) => {
+        const field = this.formSchema.fields.find(f => f.name === name);
+        return { name, value };
+      });
+      
       const submission = {
         formId: this.formSchema.formId,
-        submissions: Object.entries(this.formGroup.value).map(([name, value]) => ({
-          name,
-          value
-        }))
+        submissions
       };
       
       this.formService.submitFormData(submission)
@@ -107,15 +102,13 @@ export class FormViewComponent implements OnInit {
           response => {
             console.log('Form submitted successfully', response);
             alert("Form submitted successfully");
-            // Handle success (e.g., show success message, redirect)
           },
           error => {
             console.error('Form submission failed', error);
-            // Handle error
+            alert("Form submission failed");
           }
         )
         .add(() => this.submitting = false);
     }
   }
-
 }
