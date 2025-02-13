@@ -5,7 +5,7 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
 @Component({
   selector: 'app-base-field',
   templateUrl: './base-field.component.html',
-  styleUrls: ['./base-field.component.css']
+  styleUrls: ['./base-field.component.css'],
 })
 export class BaseFieldComponent implements OnInit {
   ngOnInit() {

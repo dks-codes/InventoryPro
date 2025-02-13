@@ -1,36 +1,57 @@
 <div class="form-builder">
   <!-- Widget Palette (Left Sidebar) -->
-  <div class="widget-palette">
+  <div class="widget-palette" cdkDropList #widgetList="cdkDropList" [cdkDropListData]="widgetTemplates" 
+  [cdkDropListConnectedTo]="[dropList]" (cdkDropListDropped)="onDrop($event)">
     <h3>Available Widgets</h3>
-    <div *ngFor="let widget of widgetTemplates" 
+    <div *ngFor="let widget of widgetTemplates"
          class="widget-item"
-         (click)="addWidget(widget)">
+         cdkDrag
+         [cdkDragData]="widget">
       {{ widget.widget | titlecase }}
     </div>
   </div>
-  
+
   <!-- Form Preview (Main Section) -->
-  <div class="form-preview">
+  <div class="form-preview" 
+      cdkDropList 
+      #dropList="cdkDropList" 
+      [cdkDropListData]="formFields" 
+      (cdkDropListDropped)="onDrop($event)">
+
     <h3>Form Preview</h3>
-    
-    <div *ngIf="formFields.length === 0" class="empty-state">
-      <p>No widgets added. Click on a widget to add it to the form.</p>
+
+    <!-- Form Name -->
+    <div class="form-name-container">
+      <mat-form-field appearance="outline" class="form-name">
+        <mat-label>Form Name</mat-label>
+        <input matInput type="text" [(ngModel)]="formName" placeholder="Enter Form Name">
+      </mat-form-field>
     </div>
-    
-    <div *ngFor="let field of formFields; let i = index" class="form-field">
+
+    <!-- No Widgets Selected -->
+    <div *ngIf="formFields.length === 0" class="empty-state">
+      <p>No widgets added. Drag and drop a widget to add it to the form.</p>
+    </div>
+
+    <!-- Form Fields -->
+    <div *ngFor="let field of formFields; let i = index" class="form-field" cdkDrag>
       <div class="field-header">
         <span>{{ field.text || field.widget }}</span>
-        <button class="remove-btn" (click)="removeField(i)">Remove</button>
+        <button mat-icon-button color="warn" (click)="removeField(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
+      
       <app-widget-properties
         [widget]="field"
         (widgetChange)="saveField(i, $event)">
       </app-widget-properties>
     </div>
 
-    <button class="save-btn" 
+    <!-- Save Button -->
+    <button mat-raised-button color="primary" class="save-btn"
             (click)="saveForm()" 
-            [disabled]="!formFields.length">
+            [disabled]="!formFields.length || !formName.trim()">
       Save Form
     </button>
   </div>

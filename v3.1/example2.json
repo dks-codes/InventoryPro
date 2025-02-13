@@ -1,0 +1,95 @@
+{
+    "formId": "FORM_M70ERM84_J85XA",
+    "formName": "demo form",
+    "createdAt": "2025-02-11T11:38:09.604Z",
+    "schema": {
+    "tabs": [
+        {
+        "name": "personalInfo",
+        "text": "Personal Information",
+        "id": "tab-001",
+        "active": true,
+        "fields": [
+            {
+            "name": "basicDetailsPanel",
+            "widget": "panel",
+            "text": "Basic Details",
+            "columns": 2,
+            "isBorderVisible": true,
+            "fields": [
+                {
+                "name": "student_name",
+                "text": "Student Name",
+                "widget": "textfield",
+                "mandatory": true,
+                "properties": {
+                    "defaultValue": "",
+                    "maxLength": 10000
+                }
+                },
+                {
+                "name": "Gender",
+                "text": "Gender",
+                "widget": "radio",
+                "properties": {
+                    "datasource": [
+                    {
+                        "label": "Male",
+                        "value": "Male"
+                    },
+                    {
+                        "label": "Female",
+                        "value": "Female"
+                    }
+                    ]
+                },
+                "mandatory": true
+                }
+            ]
+            }
+        ]
+        },
+        {
+        "name": "preferences",
+        "text": "Preferences",
+        "id": "tab-002",
+        "fields": [
+            {
+            "name": "hobbiesPanel",
+            "widget": "panel",
+            "text": "Hobbies",
+            "columns": 2,
+            "isBorderVisible": true,
+            "fields": [
+                {
+                "name": "Hobbies",
+                "text": "Hobbies",
+                "widget": "combo",
+                "properties": {
+                    "datasource": [
+                    {
+                        "label": "Music",
+                        "value": "music"
+                    },
+                    {
+                        "label": "Dance",
+                        "value": "dance"
+                    },
+                    {
+                        "label": "Art",
+                        "value": "art"
+                    }
+                    ],
+                    "multiselect": true
+                },
+                "mandatory": true
+                }
+            ]
+            }
+        ]
+        }
+    ]
+    }
+    
+  }
+  

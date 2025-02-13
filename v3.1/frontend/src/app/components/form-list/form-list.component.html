@@ -2,7 +2,7 @@
     <h2>Available Forms</h2>
     <div class="forms-grid">
       <div *ngFor="let form of forms" class="form-card">
-        <h3>{{ form.formId }}</h3>
+        <h3>{{ form.formName || form.formId }}</h3>
         <p>Created: {{ form.createdAt | date }}</p>
         <!-- <p>Created: {{ getFormattedDate(form.createdAt) }}</p> -->
         <p>Fields: {{ form.fields.length }}</p>

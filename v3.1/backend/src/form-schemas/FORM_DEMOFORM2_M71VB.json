@@ -1,0 +1,57 @@
+{
+  "formId": "FORM_DEMOFORM2_M71VB",
+  "fields": [
+    {
+      "widget": "radio",
+      "name": "gender",
+      "text": "gender",
+      "description": "",
+      "type": "string",
+      "mandatory": false,
+      "properties": {
+        "datasource": [
+          {
+            "label": "male",
+            "value": "male"
+          },
+          {
+            "label": "female",
+            "value": "female"
+          }
+        ],
+        "defaultValue": ""
+      },
+      "value": ""
+    },
+    {
+      "widget": "numberfield",
+      "name": "rollno",
+      "text": "roll no",
+      "description": "",
+      "type": "number",
+      "mandatory": false,
+      "properties": {
+        "defaultValue": null,
+        "min": 1,
+        "max": 100
+      },
+      "value": null
+    },
+    {
+      "widget": "textfield",
+      "name": "name",
+      "text": "name",
+      "description": "",
+      "type": "string",
+      "mandatory": false,
+      "disabled": false,
+      "properties": {
+        "defaultValue": "",
+        "maxLength": 100
+      },
+      "value": ""
+    }
+  ],
+  "formName": "demo form 2",
+  "createdAt": "2025-02-12T12:09:20.631Z"
+}

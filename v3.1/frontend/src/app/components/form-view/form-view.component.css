@@ -1,174 +1,68 @@
-/* Form Container */
-.form-view-container {
-  max-width: 500px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-}
-
-/* Heading */
-.form-view-container h2 {
-  text-align: center;
-  color: #4CAF50;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-/* Form Fields */
-.form-field {
-  margin-bottom: 1.8rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background: #f9f9f9;
-  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Labels */
-.form-field label {
-  font-size: 1rem;
-  color: #333;
-  display: block;
-  margin-bottom: 0.6rem;
-  font-weight: 600;
-}
-
-/* Input Fields */
-.form-field input,
-.form-field select {
-  width: 100%;
-  padding: 10px;
-  font-size: 0.8rem;
-  color: #333;
-  background: #fff;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.form-field input:focus,
-.form-field select:focus {
-  outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-}
-
-.form-field input::placeholder {
-  color: #999;
-}
-
-/* Invalid Fields */
-.invalid {
-  border-color: #e74c3c;
-  box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
-}
-
-/* Error Messages */
-.error-message {
-  color: #e74c3c;
-  font-size: 0.875rem;
-  margin-top: 0.3rem;
-  font-style: italic;
-}
-
-/* Radio & Checkbox Groups */
-.radio-group, .checkbox-group {
+:host {
   display: flex;
-  flex-direction: row;
-  gap: 3rem;
-  justify-content: space-around;
-}
-
-/* Custom Checkbox & Radio Styling */
-.custom-checkbox,
-.custom-radio {
-  /* width: 20px; */
-  /* height: 20px; */
-  accent-color: #4CAF50;
-  /* margin-right: 10px; */
-  cursor: pointer;
-}
-
-/* Checkbox & Radio Labels */
-.radio-option,
-.checkbox-option {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  font-size: 4rem;
-  color: #333;
-  cursor: pointer;
+  height: 100vh;
+  overflow: hidden;
+  background: #f4f4f4;
+  width: 100%;
 }
 
-.radio-option label,
-.checkbox-option label {
-  margin-left: 5px;
-  font-size: 1rem;
-  cursor: pointer;
+
+.form-view-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 400px;
+  max-width: 600px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevents content overflow */
 }
 
-/* Submit Button */
+h2 {
+  text-align: center;
+  padding: 15px;
+  background: #6200ea;
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  max-height: 70vh; /* Limits form height */
+  overflow-y: auto; /* Enables scrolling within the form */
+}
+
+.form-field {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
 .submit-button {
   width: 100%;
-  padding: 12px;
-  background: #4CAF50;
+  padding: 10px;
+  background: #6200ea;
   color: white;
-  font-size: 1.25rem;
   border: none;
-  border-radius: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-button:hover {
-  background: #388e3c;
-  transform: translateY(-2px);
+  /* position: sticky; */
+  bottom: 0;
 }
 
 .submit-button:disabled {
-  background: #b0bec5;
+  background: #ccc;
   cursor: not-allowed;
-  transform: none;
-}
-
-/* Required Field Indicator */
-.required {
-  color: #e74c3c;
-  margin-left: 4px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .form-view-container {
-    padding: 1.5rem;
-  }
-
-  .form-field input,
-  .form-field select {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .form-view-container {
-    padding: 1rem;
-  }
-
-  .form-view-container h2 {
-    font-size: 1.5rem;
-  }
-
-  .form-field {
-    padding: 0.8rem;
-  }
-
-  .submit-button {
-    font-size: 1.1rem;
-  }
 }

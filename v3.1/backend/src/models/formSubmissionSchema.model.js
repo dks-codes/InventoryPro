@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const formSubmissionSchema = new mongoose.Schema({
     formId: { type: String, required: true },
+    formName: { type: String, required: true },
     submissions: [{
       fieldName: String,
       value: mongoose.Schema.Types.Mixed,

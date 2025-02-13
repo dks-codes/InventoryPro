@@ -1,0 +1,35 @@
+{
+  "formId": "FORM_DEMOFORM_M71M7",
+  "formName": "demo form",
+  "fields": [
+    {
+      "widget": "textfield",
+      "name": "name",
+      "text": "Name",
+      "description": "",
+      "type": "string",
+      "mandatory": true,
+      "disabled": true,
+      "properties": {
+        "defaultValue": "",
+        "maxLength": 100
+      },
+      "value": ""
+    },
+    {
+      "widget": "numberfield",
+      "name": "age",
+      "text": "Age",
+      "description": "",
+      "type": "number",
+      "mandatory": true,
+      "properties": {
+        "defaultValue": null,
+        "min": 0,
+        "max": 100
+      },
+      "value": null
+    }
+  ],
+  "createdAt": "2025-02-12T07:54:23.207Z"
+}

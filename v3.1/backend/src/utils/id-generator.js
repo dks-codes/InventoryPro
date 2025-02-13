@@ -1,8 +1,8 @@
-const generateFormId = () => {
+const generateFormId = (formName) => {
     const prefix = 'FORM';
-    const timestamp = Date.now().toString(36);
-    const random = Math.random().toString(36).substr(2, 5);
-    return `${prefix}_${timestamp}_${random}`.toUpperCase();
+    const infix = formName.replace(/\s+/g, '');
+    const suffix = Date.now().toString(36).substring(0,5);
+    return `${prefix}_${infix}_${suffix}`.toUpperCase();
   };
   
   module.exports = { generateFormId };

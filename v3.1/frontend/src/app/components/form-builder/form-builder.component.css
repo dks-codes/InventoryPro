@@ -1,123 +1,175 @@
-/* Container Layout */
 .form-builder {
   display: flex;
-  gap: 2rem;
-  padding: 2rem;
-  background: #f8f9fa;
-  min-height: 100vh;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background: #f5f5f5;
+  min-height: 94vh;
+  justify-content: center;
 }
 
-/* Sidebar (Widget Palette) */
+/* Widget Palette (Sidebar) */
 .widget-palette {
-  width: 250px;
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  position: sticky;          /* Keep the sidebar in view while scrolling */
+  top: 0;                     /* Align the sidebar to the top of the viewport */
+  min-width: 250px;           /* Minimum width of the sidebar */
+  max-width: 300px;           /* Maximum width of the sidebar */
+  background: white;          /* White background */
+  padding: 15px;              /* Padding inside the sidebar */
+  border-radius: 8px;         /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the sidebar */
+  height: 100vh;              /* Make the sidebar take up the full height of the viewport */
+  overflow-y: auto;           /* Enables scrolling within the sidebar if content exceeds the height */
+  z-index: 1;                 /* Ensures the sidebar stays above the form preview section */
+  
 }
 
 .widget-palette h3 {
-  font-size: 18px;
-  margin-bottom: 1rem;
+  text-align: center;
   color: #333;
+  font-size: 1.2rem;
 }
 
-/* Widget Item Styling */
 .widget-item {
-  padding: 10px;
-  margin: 6px 0;
-  background: #fff;
-  border: 1px solid #ddd;
+  padding: 12px;
+  margin: 8px 0;
+  background: #007BFF;
+  color: white;
   border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
   text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .widget-item:hover {
-  background: #007bff;
-  color: white;
-  border-color: #007bff;
+  background: #0056b3;
   transform: scale(1.05);
 }
 
 /* Form Preview */
 .form-preview {
-  flex: 1;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 2;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  /* height: 650px;
+  overflow-y: auto;
+  padding: 10px; */
 }
 
 .form-preview h3 {
-  font-size: 20px;
-  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
   color: #333;
+  margin-bottom: 12px;
 }
 
-/* Empty State (When No Fields Added) */
+/* Form Name */
+.form-name-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.form-name {
+  width: 100%;
+  max-width: 450px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+/* No Widgets Selected */
 .empty-state {
-  padding: 1rem;
   text-align: center;
-  color: #888;
-  font-size: 16px;
+  color: #777;
+  font-size: 1rem;
+  padding: 12px;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background: #fafafa;
 }
 
 /* Form Fields */
 .form-field {
-  margin: 1rem 0;
-  padding: 1rem;
-  background: #f9f9f9;
+  padding: 14px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  border-left: 4px solid #007bff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.3s;
 }
 
-/* Field Header (Name + Remove Button) */
+.form-field:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
 .field-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 16px;
   font-weight: bold;
-  color: #444;
 }
 
-/* Remove Button */
-.remove-btn {
-  padding: 6px 12px;
-  border: none;
-  background: #dc3545;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.3s;
+.field-header button {
+  transition: transform 0.2s;
 }
 
-.remove-btn:hover {
-  background: #c82333;
+.field-header button:hover {
+  transform: scale(1.1);
+}
+
+/* Inputs */
+input[type="text"]:not(.mat-input-element) {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #007BFF;
+  outline: none;
 }
 
 /* Save Button */
 .save-btn {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 12px;
-  background: #28a745;
+  background: #673ab7;
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  margin: auto;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .save-btn:hover {
-  background: #218838;
+  background: #512da8;
+  transform: scale(1.05);
 }
 
 .save-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+  background: #bbb;
+  pointer-events: none;
+  box-shadow: none;
 }

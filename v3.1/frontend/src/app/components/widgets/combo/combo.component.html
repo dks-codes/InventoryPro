@@ -5,9 +5,7 @@
   </label>
 
   <!-- Multi-Select Dropdown -->
-
   <ng-container *ngIf="field.properties.multiselect; else singleSelect">
-
     <div class="dropdown">
       <button type="button" class="dropdown-toggle" (click)="toggleDropdown()">
         Select Options ▼
@@ -22,8 +20,6 @@
       </ul>
     </div>
 
-
-
     <!-- Display Selected Options as Tags -->
     <div class="selected-options">
       <span *ngFor="let option of getSelectedOptions(field.name)" class="option-tag">
@@ -33,7 +29,7 @@
     </div>
   </ng-container>
 
-  <ng-template #singleSelect >
+  <ng-template #singleSelect>
     <select [id]="field.name" [formControlName]="field.name">
       <option *ngFor="let option of field.properties.datasource" [value]="option.value">
         {{ option.label }}

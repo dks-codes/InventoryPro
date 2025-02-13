@@ -1,19 +1,19 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; // Import DragDrop
 
 @Component({
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
-  styleUrls: ['./form-builder.component.css'],
-  providers: [TitleCasePipe]
+  styleUrls: ['./form-builder.component.css']
 })
 export class FormBuilderComponent implements OnInit {
 
   widgetTemplates: any[] = []; // Array to store widget templates
   formFields: any[] = []; // Array to store form fields (Basically, stores different widgets of form)
   formId: string | null = null;
+  formName: string = '';
 
   constructor(private formBuilderService: FormBuilderService, private router: Router, private route: ActivatedRoute) {}
 
@@ -33,18 +33,17 @@ export class FormBuilderComponent implements OnInit {
     this.formBuilderService.getWidgetTemplates()
       .subscribe((templates) => {
         console.log("Received templates:", templates);
-          this.widgetTemplates = templates;
-      },(error) => console.error("Error fetching templates:", error));
+        this.widgetTemplates = templates;
+      }, (error) => console.error("Error fetching templates:", error));
   }
-
 
   loadForm(formId: string) {
     this.formBuilderService.getFormById(formId)
       .subscribe(form => {
         this.formFields = form.fields || [];
+        this.formName = form.formName || '';
       }, error => console.error("Error loading form:", error));
   }
-
 
   /* Adds widget to Form */
   addWidget(widget: any) {
@@ -63,10 +62,15 @@ export class FormBuilderComponent implements OnInit {
     console.log(this.formFields);
   }
 
-
   saveForm() {
+    if (!this.formName.trim()) {
+      alert("Please enter a form name before saving.");
+      return;
+    }
+
     const formSchema = {
       formId: this.formId, // Include formId for updates
+      formName: this.formName,
       fields: this.formFields
     };
 
@@ -76,10 +80,25 @@ export class FormBuilderComponent implements OnInit {
         alert("Form saved successfully");
         if (!this.formId) {
           this.formId = response.formId; // Set formId after creating a new form
-          // console.log("Form ID:", this.formId);
         }
         this.router.navigate(['/form-view', this.formId]);
       }, error => console.error("Error saving form:", error));
   }
 
+
+  onDrop(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
+      // Reorder widgets within the same list
+      moveItemInArray(this.formFields, event.previousIndex, event.currentIndex);
+    } else {
+      // Clone the dragged widget from the widget palette and add to form fields
+      const draggedWidget = { ...event.previousContainer.data[event.previousIndex] };
+      console.log(draggedWidget)
+      // splice(index at which item wil be inserted, items to be deleted, item to be inserted) <-- add anywhere
+      this.formFields.splice(event.currentIndex, 0, draggedWidget); 
+      // this.formFields.push(draggedWidget); <-- For adding at the end
+
+    }
+  }
+  
 }

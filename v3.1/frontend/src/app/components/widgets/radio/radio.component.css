@@ -1,0 +1,84 @@
+/* Container div styling */
+div[formGroup] {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  
+  
+  /* Label styling */
+  label {
+    font-weight: 600;
+    font-size: 15px;
+    color: #444;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    font-size: 13px;
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 6px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 4px;
+  }
+  
+  /* Radio button options container */
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px; /* Add space between radio options */
+  }
+  
+  /* Each radio input and its label styling */
+  input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    appearance: none;
+    border-radius: 50%;
+    border: 2px solid #bbb;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Checked radio button styling */
+  input[type="radio"]:checked {
+    border-color: #007bff;
+    background-color: #007bff;
+  }
+  
+  /* Radio label styling */
+  label[for^="field.name"] {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  /* Radio buttons and labels arrangement */
+  input[type="radio"] + label {
+    display: inline-block;
+    padding: 4px 0;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  /* Hover effect for labels */
+  input[type="radio"]:hover + label {
+    color: #007bff;
+  }
+  
+  /* Adjust radio label and input position */
+  .radio-option input[type="radio"] {
+    margin-left: 0;
+  }
+  
+  /* Styling error messages when field is invalid */
+  input[type="radio"].invalid {
+    border-color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
+  }
+  

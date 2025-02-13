@@ -47,11 +47,13 @@ app.get('/api/widgets', async (req, res) => {
   // Create new form
   app.post('/api/forms/create-form', async (req, res) => {
     try {
-      const formId = generateFormId();
+      const { formName, ...restBody } = req.body;
+      const formId = generateFormId(formName);
       
       const formData = {
-        ...req.body,
+        ...restBody,
         formId,
+        formName,
         createdAt: new Date()
       };
   
@@ -65,6 +67,7 @@ app.get('/api/widgets', async (req, res) => {
       res.status(201).json({
         message: 'Form schema saved successfully',
         formId,
+        formName,
         schema: formData
       });
     } catch (error) {
@@ -158,10 +161,11 @@ app.delete('/api/forms/delete-form/:formId', async (req, res) => {
   // Submit form data
   app.post('/api/form-submissions', async (req, res) => {
     try {
-      const { formId, submissions } = req.body;
+      const { formId, formName, submissions } = req.body;
       
       const formSubmission = new FormSubmission({
         formId,
+        formName,
         submissions: submissions.map(sub => ({
           fieldName: sub.name,
           value: sub.value

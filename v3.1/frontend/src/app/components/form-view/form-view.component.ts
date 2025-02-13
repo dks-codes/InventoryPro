@@ -94,6 +94,7 @@ export class FormViewComponent implements OnInit {
       
       const submission = {
         formId: this.formSchema.formId,
+        formName: this.formSchema.formName,
         submissions
       };
       

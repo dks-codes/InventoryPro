@@ -1,18 +1,26 @@
 <div class="form-view-container" *ngIf="formSchema">
-  <h2>{{ formSchema.formId }}</h2>
+  <h2>{{ formSchema.formName || formSchema.formId }}</h2>
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    
     <div *ngFor="let field of formSchema.fields" class="form-field">
-      
       <ng-container [ngSwitch]="field.widget">
+        
+        <!-- Textfield -->
         <app-textfield *ngSwitchCase="'textfield'" [formGroup]="formGroup" [field]="field"></app-textfield>
-        <app-numberfield *ngSwitchCase="'numberfield'" [formGroup]="formGroup" [field]="field"></app-numberfield>
-        <app-radio *ngSwitchCase="'radio'" [formGroup]="formGroup" [field]="field"></app-radio>
-        <app-combo *ngSwitchCase="'combo'" [formGroup]="formGroup" [field]="field"></app-combo>
-      </ng-container>
 
+        <!-- Numberfield -->
+        <app-numberfield *ngSwitchCase="'numberfield'" [formGroup]="formGroup" [field]="field"></app-numberfield>
+
+        <!-- Radio -->
+        <app-radio *ngSwitchCase="'radio'" [formGroup]="formGroup" [field]="field"></app-radio>
+
+        <!-- Combo (Single or Multi-Select) -->
+        <app-combo *ngSwitchCase="'combo'" [formGroup]="formGroup" [field]="field"></app-combo>
+
+      </ng-container>
     </div>
 
-    <button type="submit" class="submit-button" [disabled]="formGroup.invalid || submitting">
+    <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid || submitting">
       Submit
     </button>
   </form>

@@ -1,0 +1,239 @@
+{
+    "name": "JobApplicationForm",
+    "id": "001",
+    "createdAt": "YYYY-MM-DD",
+    "owner": "Admin",
+    "active": true,
+    "securityEnabled": true,
+    "language": "en",
+    "desktopView": {
+      "schema": {
+        "tabs": [
+          {
+            "name": "personalInfo",
+            "text": "Personal Information",
+            "id": "tab-001",
+            "active": true,
+            "fields": [
+              {
+                "name": "basicDetailsPanel",
+                "widget": "panel",
+                "text": "Basic Details",
+                "icon": "fa fa-user",
+                "columns": 2,
+                "isBorderVisible": true,
+                "fields": [
+                  {
+                    "name": "firstName",
+                    "text": "First Name",
+                    "widget": "textfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "lastName",
+                    "text": "Last Name",
+                    "widget": "textfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "age",
+                    "text": "Age",
+                    "widget": "numberfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "gender",
+                    "text": "Gender",
+                    "widget": "radio",
+                    "properties": {
+                      "datasource": ["Male", "Female", "Other"]
+                    },
+                    "mandatory": true
+                  }
+                ]
+              },
+              {
+                "name": "contactDetailsPanel",
+                "widget": "panel",
+                "text": "Contact Details",
+                "icon": "fa fa-phone",
+                "columns": 2,
+                "isBorderVisible": true,
+                "fields": [
+                  {
+                    "name": "email",
+                    "text": "Email",
+                    "widget": "textfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "phone",
+                    "text": "Phone Number",
+                    "widget": "numberfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "country",
+                    "text": "Country",
+                    "widget": "combo",
+                    "properties": {
+                      "datasource": ["USA", "Canada", "UK", "Australia", "India"]
+                    },
+                    "mandatory": true
+                  },
+                  {
+                    "name": "state",
+                    "text": "State",
+                    "widget": "textfield",
+                    "mandatory": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "employmentDetails",
+            "text": "Employment Details",
+            "id": "tab-002",
+            "fields": [
+              {
+                "name": "currentJobPanel",
+                "widget": "panel",
+                "text": "Current Job",
+                "icon": "fa fa-briefcase",
+                "columns": 2,
+                "isBorderVisible": true,
+                "fields": [
+                  {
+                    "name": "currentJobTitle",
+                    "text": "Job Title",
+                    "widget": "textfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "currentCompany",
+                    "text": "Company Name",
+                    "widget": "textfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "yearsOfExperience",
+                    "text": "Years of Experience",
+                    "widget": "numberfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "employmentType",
+                    "text": "Employment Type",
+                    "widget": "combo",
+                    "properties": {
+                      "datasource": ["Full-Time", "Part-Time", "Freelance", "Internship"]
+                    },
+                    "mandatory": true
+                  }
+                ]
+              },
+              {
+                "name": "previousExperiencePanel",
+                "widget": "panel",
+                "text": "Previous Experience",
+                "icon": "fa fa-history",
+                "columns": 2,
+                "isBorderVisible": true,
+                "fields": [
+                  {
+                    "name": "previousJobTitle",
+                    "text": "Previous Job Title",
+                    "widget": "textfield",
+                    "mandatory": false
+                  },
+                  {
+                    "name": "previousCompany",
+                    "text": "Previous Company",
+                    "widget": "textfield",
+                    "mandatory": false
+                  },
+                  {
+                    "name": "previousJobDuration",
+                    "text": "Job Duration (Years)",
+                    "widget": "numberfield",
+                    "mandatory": false
+                  },
+                  {
+                    "name": "reasonForLeaving",
+                    "text": "Reason for Leaving",
+                    "widget": "textfield",
+                    "mandatory": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "preferences",
+            "text": "Preferences",
+            "id": "tab-003",
+            "fields": [
+              {
+                "name": "jobPreferencesPanel",
+                "widget": "panel",
+                "text": "Job Preferences",
+                "icon": "fa fa-cogs",
+                "columns": 2,
+                "isBorderVisible": true,
+                "fields": [
+                  {
+                    "name": "preferredJobRole",
+                    "text": "Preferred Job Role",
+                    "widget": "textfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "expectedSalary",
+                    "text": "Expected Salary (USD)",
+                    "widget": "numberfield",
+                    "mandatory": true
+                  },
+                  {
+                    "name": "willingToRelocate",
+                    "text": "Willing to Relocate?",
+                    "widget": "radio",
+                    "properties": {
+                      "datasource": ["Yes", "No"]
+                    },
+                    "mandatory": true
+                  },
+                  {
+                    "name": "workType",
+                    "text": "Preferred Work Type",
+                    "widget": "combo",
+                    "properties": {
+                      "datasource": ["On-Site", "Remote", "Hybrid"]
+                    },
+                    "mandatory": true
+                  }
+                ]
+              },
+              {
+                "name": "additionalInfoPanel",
+                "widget": "panel",
+                "text": "Additional Information",
+                "icon": "fa fa-info-circle",
+                "columns": 1,
+                "isBorderVisible": true,
+                "fields": [
+                  {
+                    "name": "additionalComments",
+                    "text": "Additional Comments",
+                    "widget": "textfield",
+                    "mandatory": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  

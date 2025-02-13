@@ -76,6 +76,72 @@
         "defaultValue": ""
       },
       "value": ""
+    },
+    {
+      "widget": "numberfield",
+      "name": "Phone",
+      "text": "Phone number",
+      "description": "",
+      "type": "number",
+      "mandatory": false,
+      "properties": {
+        "defaultValue": null,
+        "min": 10,
+        "max": 10
+      },
+      "value": null
+    },
+    {
+      "widget": "radio",
+      "name": "State",
+      "text": "state",
+      "description": "",
+      "type": "string",
+      "mandatory": false,
+      "properties": {
+        "datasource": [
+          {
+            "label": "Odisha",
+            "value": "OD"
+          },
+          {
+            "label": "West Bengale",
+            "value": "WB"
+          },
+          {
+            "label": "Jharkhand",
+            "value": "JHK"
+          }
+        ],
+        "defaultValue": ""
+      },
+      "value": ""
+    },
+    {
+      "widget": "radio",
+      "name": "city",
+      "text": "City",
+      "description": "",
+      "type": "string",
+      "mandatory": false,
+      "properties": {
+        "datasource": [
+          {
+            "label": "Odisha",
+            "value": "OD"
+          },
+          {
+            "label": "West Bengale",
+            "value": "WB"
+          },
+          {
+            "label": "Jharkhand",
+            "value": "JHK"
+          }
+        ],
+        "defaultValue": ""
+      },
+      "value": ""
     }
   ],
   "createdAt": "2025-02-10T12:52:57.934Z"
